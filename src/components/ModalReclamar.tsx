@@ -34,7 +34,7 @@ const ModalReclamar: React.FC<ModalReclamarProps> = ({ show, onClose }) => {
     if (!validationErrors.titulo && !validationErrors.reclamacao && !validationErrors.categoria) {
         try {
             console.log(categoria);
-            const response = await fetch('http://localhost:8085/api/v1/comentarios', {
+            const response = await fetch('http://localhost:8085/api/v1/comentarios/criarComentario', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
