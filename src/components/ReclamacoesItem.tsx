@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/Reclamacoes.css'; 
-import ModalDenunciar from './ModalDenunciar';
-import ModalResponder from './ModalResponder';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/Reclamacoes.css";
+import ModalDenunciar from "./ModalDenunciar";
+import ModalResponder from "./ModalResponder";
 
 interface ReclamacaoItemProps {
   titulo: string;
@@ -66,7 +66,10 @@ const ReclamacoesItem: React.FC<ReclamacaoItemProps> = ({
     <>
       <div className="reclamacao-item">
         <div className="reclamacao-header">
-          <div className="reclamacao-description" onClick={handleClick}>
+          <div
+            className="reclamacao-description-container"
+            onClick={handleClick}
+          >
             <span className="reclamacao-titulo" onClick={handleClick}>
               {titulo}
             </span>
