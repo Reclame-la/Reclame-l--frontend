@@ -121,6 +121,41 @@
     transform: scale(1.05); 
 }
 
+.reclamacao-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.curtida-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 10px;
+}
+
+.curtida-icon {
+    font-size: 1.5rem;
+    color: #ff7f00; 
+    cursor: pointer;
+    margin-right: 0.5rem; 
+    transition: transform 0.2s ease;
+}
+
+.curtida-icon:hover{
+    transform: scale(1.1);
+}
+
+.curtida-icon.fill {
+    color: red; 
+}
+
+.curtidas-count {
+    color: #ff7f00;
+    font-weight: bold;
+}
+
 /* Animação de fade-in */
 @keyframes fadeIn {
     from {

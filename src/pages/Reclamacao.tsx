@@ -40,6 +40,7 @@ const closeResponderModal = () => {
       <ReclamacoesItem titulo={titulo}
                     etiqueta={etiqueta}
                     descricao={descricao}
+                    qtdCurtidas={0}
                     showResponderButton={false}/>
 
     <button className="adicionar-comentario-btn" onClick={openResponderModal}><i className="bi bi-plus"></i> Adicionar Comentário</button>
@@ -52,6 +53,7 @@ const closeResponderModal = () => {
                     etiqueta={etiqueta}
                     descricao={item.descricao}
                     showResponderButton={false}
+                    qtdCurtidas={0}
                 />
             ))}
       </div>

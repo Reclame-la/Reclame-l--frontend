@@ -12,7 +12,7 @@ interface Comentario {
   
 const Reclamacoes = () => {
     const [reclamacoesFormatadas, setReclamacoesFormatadas] = useState<
-    { titulo: string; etiqueta: string; descricao: string }[]
+    { titulo: string; etiqueta: string; descricao: string; qtdCurtidas: number }[]
   >([]);
 
     const fetchComentarios = async () => {
@@ -40,9 +40,10 @@ const Reclamacoes = () => {
             titulo: item.tituloComentario,
             etiqueta: item.categoriaComentario,
             descricao: item.conteudoComentario,
+            qtdCurtidas: item.qtdCurtidas
           }));
       
-          setReclamacoesFormatadas(mappedData); // Atualiza o estado com os dados mapeados
+          setReclamacoesFormatadas(mappedData); 
         } catch (error) {
           console.error("Erro ao buscar comentários:", error);
         }
@@ -56,13 +57,14 @@ const Reclamacoes = () => {
         <div className="reclamacoes-container">
             <h1 className="reclamacoes-title">Reclamações</h1>
             {reclamacoesFormatadas.map((item, index) => (
-        <ReclamacoesItem
-          key={index}
-          titulo={item.titulo}
-          etiqueta={item.etiqueta}
-          descricao={item.descricao}
-        />
-      ))}
+    <ReclamacoesItem
+        key={index}
+        titulo={item.titulo}
+        etiqueta={item.etiqueta}
+        descricao={item.descricao}
+        qtdCurtidas={item.qtdCurtidas}
+    />
+))}
         </div>
     );
 };
