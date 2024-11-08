@@ -5,6 +5,7 @@ import ModalDenunciar from "./ModalDenunciar";
 import ModalResponder from "./ModalResponder";
 
 interface ReclamacaoItemProps {
+  id: number
   titulo: string;
   etiqueta: string;
   descricao: string;
@@ -13,6 +14,7 @@ interface ReclamacaoItemProps {
 }
 
 const ReclamacoesItem: React.FC<ReclamacaoItemProps> = ({
+  id,
   titulo,
   etiqueta,
   descricao,
@@ -112,7 +114,7 @@ const ReclamacoesItem: React.FC<ReclamacaoItemProps> = ({
       </div>
 
       {/* Modal Responder */}
-      <ModalResponder show={showResponderModal} onClose={closeResponderModal} />
+      <ModalResponder comentarioId={id} show={showResponderModal} onClose={closeResponderModal} />
 
       {/* Modal Denunciar */}
       <ModalDenunciar

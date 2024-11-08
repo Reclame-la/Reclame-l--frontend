@@ -12,7 +12,7 @@ interface Comentario {
   
 const Reclamacoes = () => {
     const [reclamacoesFormatadas, setReclamacoesFormatadas] = useState<
-    { titulo: string; etiqueta: string; descricao: string; qtdCurtidas: number }[]
+    { id: number, titulo: string; etiqueta: string; descricao: string; qtdCurtidas: number }[]
   >([]);
 
     const fetchComentarios = async () => {
@@ -37,6 +37,7 @@ const Reclamacoes = () => {
       
           // Mapeia os dados para o formato desejado
           const mappedData = data.map((item: Comentario) => ({
+            id: item.id,
             titulo: item.tituloComentario,
             etiqueta: item.categoriaComentario,
             descricao: item.conteudoComentario,
@@ -59,6 +60,7 @@ const Reclamacoes = () => {
             {reclamacoesFormatadas.map((item, index) => (
     <ReclamacoesItem
         key={index}
+        id={item.id}
         titulo={item.titulo}
         etiqueta={item.etiqueta}
         descricao={item.descricao}

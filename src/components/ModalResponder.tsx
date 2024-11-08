@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 interface ModalResponderProps {
   show: boolean;
   onClose: () => void;
+  comentarioId: number; 
 }
 
-const ModalResponder: React.FC<ModalResponderProps> = ({ show, onClose }) => {
+const ModalResponder: React.FC<ModalResponderProps> = ({ comentarioId, show, onClose}) => {
   const [responseText, setResponseText] = useState('');
 
   useEffect(() => {
@@ -16,9 +17,28 @@ const ModalResponder: React.FC<ModalResponderProps> = ({ show, onClose }) => {
     }
   }, [show]);
 
-  const handleSendResponse = () => {
-    console.log('Resposta enviada:', responseText);
-    onClose(); // Fecha o modal após enviar
+  const handleSendResponse = async () => {
+    try {
+      const response = await fetch(`http://localhost:8085/api/respostas/criarResposta/${comentarioId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          conteudoResposta: responseText,
+          matriculaUsuario: 123456, 
+        }),
+      });
+
+      if (response.ok) {
+        console.log('Resposta enviada com sucesso');
+        onClose();
+      } else {
+        console.error('Erro ao enviar resposta');
+      }
+    } catch (error) {
+      console.error('Erro na requisição', error);
+    }
   };
 
   return (
@@ -32,7 +52,7 @@ const ModalResponder: React.FC<ModalResponderProps> = ({ show, onClose }) => {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="responderModalLabel" style={{color: '#ff7f00'}}>Responder</h5>
+            <h5 className="modal-title" id="responderModalLabel" style={{ color: '#ff7f00' }}>Responder</h5>
             <button
               type="button"
               className="btn-close"
@@ -51,7 +71,11 @@ const ModalResponder: React.FC<ModalResponderProps> = ({ show, onClose }) => {
             ></textarea>
           </div>
           <div className="modal-footer">
-            <button style={{ backgroundColor: '#ff7f00', color: '#fff' }} type="button" className="btn" onClick={handleSendResponse}>
+            <button
+              style={{ backgroundColor: '#ff7f00', color: '#fff' }}
+              type="button"
+              className="btn"
+              onClick={handleSendResponse}>
               Enviar
             </button>
           </div>
