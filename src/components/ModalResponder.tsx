@@ -6,7 +6,7 @@ interface ModalResponderProps {
   comentarioId: number; 
 }
 
-const ModalResponder: React.FC<ModalResponderProps> = ({ comentarioId, show, onClose}) => {
+const ModalResponder: React.FC<ModalResponderProps> = ({ comentarioId, show, onClose }) => {
   const [responseText, setResponseText] = useState('');
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const ModalResponder: React.FC<ModalResponderProps> = ({ comentarioId, show, onC
       modalInstance.show();
     }
   }, [show]);
+;
 
   const handleSendResponse = async () => {
     try {

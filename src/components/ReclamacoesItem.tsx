@@ -30,7 +30,7 @@ const ReclamacoesItem: React.FC<ReclamacaoItemProps> = ({
 
   const handleClick = () => {
     navigate(`/reclamacao/${titulo}`, {
-      state: { titulo, etiqueta, descricao },
+      state: { id, titulo, etiqueta, descricao },
     });
   };
 
