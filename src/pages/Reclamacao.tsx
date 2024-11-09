@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 const Reclamacao = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { id, titulo, etiqueta, descricao } = location.state || {};
+  const { id, titulo, etiqueta, descricao, qtdCurtidas } = location.state || {};
   const [showResponderModal, setShowResponderModal] = useState(false);
   const [comentarios, setComentarios] = useState([]);
   const [responseText, setResponseText] = useState("");
@@ -113,7 +113,7 @@ const Reclamacao = () => {
           titulo={titulo}
           etiqueta={etiqueta}
           descricao={descricao}
-          qtdCurtidas={0}
+          qtdCurtidas={qtdCurtidas}
           showResponderButton={false}
         />
 
