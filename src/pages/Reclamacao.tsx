@@ -12,26 +12,26 @@ const Reclamacao = () => {
   const [responseText, setResponseText] = useState("");
 
   // Função para buscar comentários
+  const fetchComentarios = async () => {
+    try {
+      const response = await fetch("http://localhost:8085/api/respostas");
+      const data = await response.json();
+
+      // Define valores padrão para os campos que podem estar ausentes
+      const comentariosComDefaults = data.map((resposta) => ({
+        titulo: resposta.titulo || `Resposta para: ${titulo}`,
+        descricao: resposta.conteudoResposta,
+        etiqueta: etiqueta,
+        qtdCurtidas: resposta.qtdCurtidas || 0,
+      }));
+
+      setComentarios(comentariosComDefaults);
+    } catch (error) {
+      console.error("Erro ao buscar comentários:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchComentarios = async () => {
-      try {
-        const response = await fetch("http://localhost:8085/api/respostas");
-        const data = await response.json();
-
-        // Define valores padrão para os campos que podem estar ausentes
-        const comentariosComDefaults = data.map((resposta) => ({
-          titulo: resposta.titulo || `Resposta para: ${titulo}`,
-          descricao: resposta.conteudoResposta,
-          etiqueta: etiqueta,
-          qtdCurtidas: resposta.qtdCurtidas || 0,
-        }));
-
-        setComentarios(comentariosComDefaults);
-      } catch (error) {
-        console.error("Erro ao buscar comentários:", error);
-      }
-    };
-
     fetchComentarios();
   }, [etiqueta]);
 
@@ -64,6 +64,7 @@ const Reclamacao = () => {
       if (response.ok) {
         console.log("Resposta enviada com sucesso");
         closeResponderModal();
+        fetchComentarios(); // Atualiza os comentários após o envio da resposta
       } else {
         console.error("Erro ao enviar resposta");
       }
