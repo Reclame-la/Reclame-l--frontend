@@ -1,22 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 interface ModalResponderProps {
   show: boolean;
   onClose: () => void;
-  comentarioId: number; 
+  comentarioId: number;
 }
 
 const ModalResponder: React.FC<ModalResponderProps> = ({ comentarioId, show, onClose }) => {
   const [responseText, setResponseText] = useState('');
-
-  useEffect(() => {
-    if (show) {
-      const modalElement = document.getElementById('responderModal');
-      const modalInstance = new window.bootstrap.Modal(modalElement!);
-      modalInstance.show();
-    }
-  }, [show]);
-;
 
   const handleSendResponse = async () => {
     try {
@@ -33,7 +24,9 @@ const ModalResponder: React.FC<ModalResponderProps> = ({ comentarioId, show, onC
 
       if (response.ok) {
         console.log('Resposta enviada com sucesso');
-        onClose();
+        setResponseText(''); // Limpa o campo de resposta
+        onClose(); // Fecha o modal
+        alert('Resposta enviada com sucesso!');
       } else {
         console.error('Erro ao enviar resposta');
       }
@@ -43,24 +36,12 @@ const ModalResponder: React.FC<ModalResponderProps> = ({ comentarioId, show, onC
   };
 
   return (
-    <div
-      className="modal fade"
-      id="responderModal"
-      tabIndex={-1}
-      aria-labelledby="responderModalLabel"
-      aria-hidden="true"
-    >
+    <div className={`modal ${show ? 'd-block' : 'd-none'}`} tabIndex={-1} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="responderModalLabel" style={{ color: '#ff7f00' }}>Responder</h5>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={onClose}
-            ></button>
+            <h5 className="modal-title" style={{ color: '#ff7f00' }}>Responder</h5>
+            <button type="button" className="btn-close" aria-label="Close" onClick={onClose}></button>
           </div>
           <div className="modal-body">
             <textarea
