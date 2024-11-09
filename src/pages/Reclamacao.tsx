@@ -10,6 +10,8 @@ const Reclamacao = () => {
   const [showResponderModal, setShowResponderModal] = useState(false);
   const [comentarios, setComentarios] = useState([]);
   const [responseText, setResponseText] = useState("");
+  const [alertMessage, setAlertMessage] = useState(""); 
+  const [alertType, setAlertType] = useState(""); 
 
   // Função para buscar comentários
   const fetchComentarios = async () => {
@@ -63,13 +65,36 @@ const Reclamacao = () => {
 
       if (response.ok) {
         console.log("Resposta enviada com sucesso");
-        closeResponderModal();
-        fetchComentarios(); // Atualiza os comentários após o envio da resposta
+        setAlertMessage("Resposta enviada com sucesso!");
+        setAlertType("success");
       } else {
         console.error("Erro ao enviar resposta");
+        setAlertMessage("Erro ao enviar a resposta. Tente novamente.");
+        setAlertType("error");
       }
+
+      // Fecha o modal imediatamente após o envio da resposta
+      closeResponderModal();
+
+      // Aguarda 5 segundos antes de ocultar o feedback
+      setTimeout(() => {
+        setAlertMessage(""); // Oculta a mensagem de feedback após 5 segundos
+      }, 5000);
+
+      // Atualiza os comentários após o envio da resposta
+      fetchComentarios();
     } catch (error) {
       console.error("Erro na requisição", error);
+      setAlertMessage("Erro ao enviar a resposta. Tente novamente.");
+      setAlertType("error");
+
+      // Fecha o modal imediatamente após o erro
+      closeResponderModal();
+
+      // Aguarda 5 segundos antes de ocultar o feedback
+      setTimeout(() => {
+        setAlertMessage(""); // Oculta a mensagem de feedback após 5 segundos
+      }, 5000);
     }
   };
 
@@ -98,6 +123,13 @@ const Reclamacao = () => {
         >
           <i className="bi bi-plus"></i> Adicionar Comentário
         </button>
+
+        {/* Feedback Visual */}
+        {alertMessage && (
+          <div className={`alert alert-${alertType}`} role="alert">
+            {alertMessage}
+          </div>
+        )}
 
         <h2>Comentários</h2>
         <div className="comentario">

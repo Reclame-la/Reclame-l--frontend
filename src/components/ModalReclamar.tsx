@@ -21,6 +21,7 @@ const ModalReclamar: React.FC<ModalReclamarProps> = ({ show, onClose }) => {
     reclamacao: false,
     categoria: false,
   }); 
+  const [showAlert, setShowAlert] = useState<boolean>(false);  // Estado para controle do alerta
 
   const handleSubmit = async () => {
     const validationErrors: Errors = {
@@ -48,27 +49,34 @@ const ModalReclamar: React.FC<ModalReclamarProps> = ({ show, onClose }) => {
             });
 
             if (!response.ok) {
-                const errorMessage = await response.text(); // Captura o corpo da resposta
+                const errorMessage = await response.text();
                 console.error('Erro na resposta do servidor:', errorMessage);
                 throw new Error(`Erro ao enviar o comentário: ${response.statusText}`);
             }
 
-            // Limpa os campos e fecha o modal
+            // Exibe o alerta de sucesso
+            setShowAlert(true);
+
+            // Após 5 segundos, fecha o alerta e o modal
+            setTimeout(() => {
+              setShowAlert(false);
+              onClose();  // Fecha o modal após o feedback visual
+            }, 5000);
+
+            // Limpa os campos
             setTitulo('');
             setReclamacao('');
             setCategoria('');
-            onClose();
-            
-            // Exibe o alerta e atualiza a página
-            alert('Comentário enviado com sucesso!');
-            window.location.reload();
+
         } catch (error) {
             console.error('Erro ao enviar o comentário:', error);
-            alert('Houve um erro ao enviar seu comentário'); 
+            setShowAlert(true);  // Exibe o alerta de erro
+            setTimeout(() => {
+              setShowAlert(false); // Fecha o alerta após 5 segundos
+            }, 5000);
         }
     }
-};
-  
+  };
 
   return (
     <div className={`modal ${show ? 'd-block' : 'd-none'}`} tabIndex={-1} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
@@ -121,6 +129,15 @@ const ModalReclamar: React.FC<ModalReclamarProps> = ({ show, onClose }) => {
                 ></textarea>
                 {errors.reclamacao && <div className="invalid-feedback">Por favor, descreva sua reclamação.</div>}
               </div>
+
+              {/* Feedback visual */}
+              {showAlert && (
+                <div className={`alert ${errors.titulo || errors.reclamacao || errors.categoria ? 'alert-danger' : 'alert-success'}`} role="alert">
+                  {errors.titulo || errors.reclamacao || errors.categoria 
+                    ? 'Houve um erro ao enviar seu comentário. Tente novamente.' 
+                    : 'Comentário enviado com sucesso!'}
+                </div>
+              )}
             </form>
           </div>
           <div className="modal-footer">
