@@ -1,0 +1,52 @@
+/* styles.css */
+.header {
+    padding: 10px;
+    background-color: #FFF;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw; /* Ocupa a largura total */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o header fique na frente de outros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra abaixo do header */
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 55px; /* Defina o tamanho da logo */
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+    margin-right: 4vw; /* Margem à direita para afastar os botões da borda */
+  }
+  
+  .login-button {
+    padding: 10px 20px;
+    background-color: #F36A07; /* Cor do botão Login */
+    color: white; /* Texto branco */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s; /* Adiciona uma transição */
+  }
+  
+  .register-button {
+    padding: 10px 20px;
+    background-color: white; /* Fundo branco */
+    color: #F36A07; /* Texto do botão Registrar */
+    border: 2px solid #F36A07; /* Borda verde */
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
