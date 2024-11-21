@@ -1,0 +1,142 @@
+/* Estilização principal para a página */
+.reclamacoes-instituicao {
+  display: grid;
+  margin-top: 10vh;
+  grid-template-columns: 300px 1fr; /* Define a largura do menu lateral e do conteúdo */
+  height: 100vh; /* Ocupa toda a altura da tela */
+  overflow: hidden; /* Remove scroll horizontal */
+}
+
+/* ======= Estilização do menu lateral ======= */
+.menu-lateral {
+  background-color: #f8f8f8; /* Fundo claro */
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem; /* Espaçamento entre os elementos */
+  border-right: 1px solid #ccc; /* Linha divisória */
+}
+
+.usuario {
+  text-align: center;
+}
+
+.usuario-logo {
+  width: 250px; /* Aumentando o tamanho da imagem */
+  height: 250px; /* Aumentando o tamanho da imagem */
+  border-radius: 50%; /* Torna o ícone circular */
+  margin-bottom: 1rem;
+}
+
+.usuario h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.usuario p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Botões do menu */
+.menu-opcoes {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.menu-botao {
+  background-color: #f26722; /* Cor laranja */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.menu-botao:hover {
+  background-color: #e0541a;
+}
+
+.sair-botao {
+  margin-top: auto; /* Empurra o botão para o final */
+  background-color: transparent;
+  color: #f26722;
+  border: 1px solid #f26722;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sair-botao:hover {
+  background-color: #f26722;
+  color: white;
+}
+
+/* ======= Estilização do conteúdo das reclamações ======= */
+.reclamacoes-conteudo {
+  padding: 2rem;
+  overflow-y: auto; /* Permite scroll apenas vertical */
+}
+
+.reclamacoes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.filtro {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.reclamacoes-lista {
+  list-style-type: none;
+  padding: 0;
+}
+
+.reclamacao-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 0.5rem; /* Diminuindo o espaçamento entre as reclamações */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reclamacao-conteudo h2 {
+  margin: 0 0 0.5rem;
+  color: #333;
+}
+
+.reclamacao-conteudo p {
+  margin: 0;
+  color: #555;
+}
+
+.responder-botao {
+  background-color: #f26722;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.responder-botao:hover {
+  background-color: #e0541a;
+}
+
+.curtidas {
+  font-size: 1rem;
+  color: #555;
+}

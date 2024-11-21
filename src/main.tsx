@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import Footer from './components/Footer.tsx';
 import Header from './components/Header.tsx';
-import './components/Header.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

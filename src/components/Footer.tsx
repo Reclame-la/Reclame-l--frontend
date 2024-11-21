@@ -14,13 +14,15 @@ const styles = {
     backgroundColor: '#F36A07',
     color: 'white',
     textAlign: 'center' as const,
-    width: '100vw',
-    position: 'fixed' as const,
+    width: '100%',
+    position: 'relative' as const, // Faz o footer ser parte do fluxo normal da página
     bottom: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '50px', // Define a altura do rodapé
+    height: '50px',
+    boxShadow: '0 -2px 5px rgba(0, 0, 0, 0.1)',
+    zIndex: 1000,
   },
 };
 
