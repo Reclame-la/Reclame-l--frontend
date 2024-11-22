@@ -60,7 +60,7 @@ const ModalReclamar: React.FC<ModalReclamarProps> = ({ show, onClose }) => {
             // Após 5 segundos, fecha o alerta e o modal
             setTimeout(() => {
               setShowAlert(false);
-              onClose();  // Fecha o modal após o feedback visual
+              window.location.reload();
             }, 5000);
 
             // Limpa os campos
