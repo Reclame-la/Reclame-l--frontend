@@ -18,9 +18,9 @@ function HomeAcademico() {
 
     return (
         <>
-        <div className="container">
+        <div className="home-academico-container">
             <div className="info-section">
-                <img src={universidadeLogo} alt="Logo universidade" className="logo" />
+                <img src={universidadeLogo} alt="Logo universidade" className="logo-universidade" />
                 <div className="text-container">
                     <span className="university-name">UNIT</span>
                     <i className="bi bi-check2-all icon"></i>

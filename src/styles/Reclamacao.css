@@ -6,7 +6,7 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.reclamacao-item {
+.reclamacao-item-container {
   background-color: #e0e0e0;
   padding: 1rem;
   border-radius: 10px;

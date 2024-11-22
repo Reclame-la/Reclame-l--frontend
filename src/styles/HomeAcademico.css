@@ -1,4 +1,4 @@
-.container {
+.home-academico-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,11 +7,12 @@
     padding: 1.25rem; 
     max-width: 90%;
     margin: 1rem auto;
+    margin-top: 110px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
 }
 
-.container:hover {
+.home-academico-container:hover {
     transform: scale(1.02); 
 }
 
@@ -20,7 +21,7 @@
     align-items: center;
 }
 
-.logo {
+.logo-universidade {
     width: 6rem; 
     height: 6rem;
     border-radius: 50%;
@@ -78,10 +79,11 @@
 
 /* Media queries para responsividade */
 @media (max-width: 768px) {
-    .container {
+    .home-academico-container {
         flex-direction: column;
         text-align: center;
         padding: 1rem;
+        max-width: 450px;
     }
 
     .logo {
@@ -103,6 +105,7 @@
     .reclaim-button {
         width: 40%;
         margin-right: 0;
+        margin-top: 10px;
         justify-content: center;
     }
 }
@@ -115,6 +118,7 @@
     .reclaim-button {
         font-size: 0.9rem;
         margin-right: 0;
+        margin-top: 10px;
     }
 
     .icon {

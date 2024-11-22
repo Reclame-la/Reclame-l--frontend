@@ -66,7 +66,7 @@ const ReclamacoesItem: React.FC<ReclamacaoItemProps> = ({
 
   return (
     <>
-      <div className="reclamacao-item">
+      <div className="reclamacao-item-container">
         <div className="reclamacao-header">
           <div
             className="reclamacao-description-container"
