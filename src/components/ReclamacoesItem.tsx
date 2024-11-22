@@ -59,9 +59,28 @@ const ReclamacoesItem: React.FC<ReclamacaoItemProps> = ({
     setShowResponderModal(false);
   };
 
-  const handleCurtida = () => {
-    setCurtidaAtiva(!curtidaAtiva);
-    setqtdCurtidas(curtidaAtiva ? qtdCurtidas - 1 : qtdCurtidas + 1);
+  const handleCurtida = async () => {
+    try {
+      // Atualiza localmente o estado para feedback rápido
+      setCurtidaAtiva(!curtidaAtiva);
+      setqtdCurtidas(curtidaAtiva ? qtdCurtidas - 1 : qtdCurtidas + 1);
+  
+      const response = await fetch(
+        `http://localhost:8085/api/v1/comentarios/${id}/curtir`,
+        {
+          method: "PATCH",
+        }
+      );
+  
+      if (!response.ok) {
+        throw new Error("Erro ao curtir o comentário");
+      }
+  
+    } catch (error) {
+      // Em caso de erro, reverte o estado
+      setCurtidaAtiva(curtidaAtiva); 
+      setqtdCurtidas(curtidaAtiva ? qtdCurtidas + 1 : qtdCurtidas - 1);
+    }
   };
 
   return (
@@ -108,7 +127,7 @@ const ReclamacoesItem: React.FC<ReclamacaoItemProps> = ({
               } curtida-icon${curtidaAtiva ? " fill" : ""}`}
               onClick={handleCurtida}
             ></i>
-            <span className="curtidas-count">{qtdCurtidas}</span>
+            <span className="curtidas-count">{qtdCurtidas.toString()}</span>
           </div>
         </div>
       </div>
