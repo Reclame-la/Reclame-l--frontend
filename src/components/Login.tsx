@@ -67,6 +67,7 @@ const Login: React.FC<LoginProps> = ({ toggleLogin, isRegisterVisible, setIsRegi
       });
       const data = await response.json();
       if (data.success) {
+        localStorage.clear();
         localStorage.setItem('usuario', JSON.stringify(data.data));
         alert('Login de usuário acadêmico bem-sucedido.');
       } else {
@@ -115,6 +116,8 @@ const Login: React.FC<LoginProps> = ({ toggleLogin, isRegisterVisible, setIsRegi
       });
       const data = await response.json();
       if (data.success) {
+        localStorage.clear();
+        localStorage.setItem('loggedInstitution', JSON.stringify(data.data));
         alert('Login de instituição bem-sucedido.');
       } else {
         alert(data.message || 'Erro ao realizar login.');
